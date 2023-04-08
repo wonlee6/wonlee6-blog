@@ -1,0 +1,28 @@
+#navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  transition: all var(--animation-duration) ease-in-out;
+  z-index: 10;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 8px;
+}
+
+.icon:hover {
+  color: darkgray;
+}
+
+.downdown {
+  position: fixed;
+  animation: down 0.3s ease;
+}
+
+@keyframes down {
+  0% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
