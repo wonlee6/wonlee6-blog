@@ -1,12 +1,11 @@
-import React, {useEffect, useMemo, useRef, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import EmailIcon from '@mui/icons-material/Email'
 import GitHubIcon from '@mui/icons-material/GitHub'
-import BoyIcon from '@mui/icons-material/Boy'
 import styles from './nav.module.css'
-import useScrollDown from '@/hooks/useScrolldown'
+import useScrollDown from '@/hooks/useScrollDown'
 import Image from 'next/image'
-import darkImg from '@/public/images/dark.svg'
-import lightImg from '@/public/images/moon.svg'
+import moon from '@/public/images/moon.svg'
+import sun from '@/public/images/sun.svg'
 
 function Nav() {
   const [theme, setTheme] = useState<'dark' | 'light'>(() =>
@@ -45,16 +44,16 @@ function Nav() {
       id={`${styles.navbar}`}
       className={`${isScrollDown ? styles.downdown : ''}`}>
       <div className="text-3xl font-semibold">
-        <BoyIcon fontSize={'inherit'} />
-        <span>wonlee1205 Blog</span>
+        {/* <BoyIcon fontSize={'inherit'} /> */}
+        <span>!!?!?!!??!</span>
       </div>
-      <div className="w-28 text-4xl flex justify-between items-center">
+      <div className="w-36 text-4xl flex justify-between items-center">
         <button onClick={handleClick}>
-          <Image
-            className="w-7"
-            src={theme === 'light' ? darkImg : lightImg}
-            alt={theme === 'light' ? darkImg : lightImg}
-          />
+          {theme === 'light' ? (
+            <Image width={30} height={40} src={moon} alt={'moon'} />
+          ) : (
+            <Image width={30} height={40} src={sun} alt={'sun'} />
+          )}
         </button>
         <GitHubIcon
           titleAccess="wonlee6"

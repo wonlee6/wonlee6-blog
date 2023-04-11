@@ -2,7 +2,7 @@ import {useEffect, useMemo, useRef, useState} from 'react'
 import {throttle} from 'lodash'
 
 const useScrollDown = () => {
-  const [isNavOn, setIsNavOn] = useState(true)
+  const [isScrollDown, setIsScrollDown] = useState(true)
   const beforeScrollY = useRef(0)
 
   const scrollEvent = useMemo(
@@ -10,9 +10,9 @@ const useScrollDown = () => {
       throttle(() => {
         const currentScrollY = window.scrollY
         if (beforeScrollY.current < currentScrollY) {
-          setIsNavOn(false)
+          setIsScrollDown(false)
         } else {
-          setIsNavOn(true)
+          setIsScrollDown(true)
         }
         beforeScrollY.current = currentScrollY
       }, 300),
@@ -27,7 +27,7 @@ const useScrollDown = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return isNavOn
+  return isScrollDown
 }
 
 export default useScrollDown
