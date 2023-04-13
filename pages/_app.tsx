@@ -1,7 +1,8 @@
-import '@/styles/globals.css'
+import {ReactElement, ReactNode} from 'react'
 import {NextPage} from 'next'
 import type {AppProps} from 'next/app'
-import {ReactElement, ReactNode} from 'react'
+import ErrorBoundary from '@/components/errorBoundary'
+import '@/styles/globals.css'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -10,9 +11,14 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
-// const getLayout = Component.getLayout ?? ((page) => page)
-// return getLayout(<Component {...pageProps} />)
 
 export default function App({Component, pageProps}: AppPropsWithLayout) {
-  return <Component {...pageProps} />
+  // const getLayout = Component.getLayout ?? ((page) => page)
+  // return getLayout(<Component {...pageProps} />)
+
+  return (
+    <ErrorBoundary>
+      <Component {...pageProps} />
+    </ErrorBoundary>
+  )
 }
