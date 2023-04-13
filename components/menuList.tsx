@@ -87,13 +87,11 @@ function MenuList({postsData}: {postsData: PostData[]}) {
                   <React.Fragment key={index}>
                     <Collapse in={open[item.tag]} timeout='auto' unmountOnExit>
                       <List component='div' disablePadding>
-                        <ListItemButton sx={{pl: 4}}>
-                          <Link
-                            className='truncate'
-                            href={`/posts/${value.id}`}>
+                        <Link className='truncate' href={`/posts/${value.id}`}>
+                          <ListItemButton sx={{pl: 4}}>
                             <ListItemText primary={value.title} />
-                          </Link>
-                        </ListItemButton>
+                          </ListItemButton>
+                        </Link>
                       </List>
                     </Collapse>
                   </React.Fragment>

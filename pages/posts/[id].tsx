@@ -11,6 +11,8 @@ import React from 'react'
 import utilStyles from '../../styles/utils.module.css'
 import Date from '@/components/date'
 import {useRouter} from 'next/router'
+import {MDXRemote} from 'next-mdx-remote'
+import CodeBlock from '@/components/codeBlock'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostIds()
@@ -37,9 +39,22 @@ interface Props {
     tag: string
     title: string
     contentHtml: string
+    mdxSource?: any
   }
   allPostsData: PostData[]
 }
+
+const Button = ({children}: {children: any}) => {
+  return (
+    <button
+      className='bg-black dark:bg-white text-lg text-teal-200 dark:text-teal-700 rounded-lg px-5'
+      onClick={() => alert(`thanks to ${children}`)}>
+      {children}
+    </button>
+  )
+}
+
+const components = {Button, CodeBlock}
 
 export default function Post({postData, allPostsData}: Props) {
   const router = useRouter()
@@ -49,7 +64,7 @@ export default function Post({postData, allPostsData}: Props) {
   }
 
   return (
-    <Layout postsData={allPostsData}>
+    <Layout postsData={allPostsData} home={false}>
       <div>
         <Head>
           <title>{postData.title}</title>
@@ -62,9 +77,9 @@ export default function Post({postData, allPostsData}: Props) {
           {postData.contentHtml && (
             <div dangerouslySetInnerHTML={{__html: postData.contentHtml}} />
           )}
-          {/* {postData.mdxSource && (
-          <MDXRemote {...postData.mdxSource} components={components} />
-        )} */}
+          {postData.mdxSource && (
+            <MDXRemote {...postData.mdxSource} components={components} />
+          )}
         </article>
       </div>
     </Layout>

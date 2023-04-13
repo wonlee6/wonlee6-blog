@@ -16,7 +16,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export default function Home({allPostsData}: {allPostsData: PostData[]}) {
   return (
-    <Layout postsData={allPostsData}>
+    <Layout postsData={allPostsData} home>
       {/* <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>

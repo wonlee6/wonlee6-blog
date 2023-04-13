@@ -3,9 +3,12 @@ import styles from './layout.module.css'
 import Nav from './nav'
 import MenuList from '@/components/menuList'
 import {PostData} from '@/lib/posts'
+import Utterance from './utterance'
+import Link from 'next/link'
 
 interface Props {
   children: ReactNode
+  home: boolean
   postsData: PostData[]
 }
 
@@ -19,7 +22,17 @@ export default function Layout(props: Props) {
           style={{borderRight: '1px solid #E7EBF0'}}>
           <MenuList postsData={props.postsData} />
         </aside>
-        <article className='flex-1 h-100 pl-3'>{props.children}</article>
+        <article className='flex-1 h-100 pl-3'>
+          {props.children}
+          {!props.home && (
+            <>
+              <Utterance />
+              <div className={styles.backToHome}>
+                <Link href='/'>← Back to home</Link>
+              </div>
+            </>
+          )}
+        </article>
       </section>
     </main>
   )

@@ -21,7 +21,7 @@ export function getSortedPostsData() {
   const fileNames = fs.readdirSync(postsDirectory)
   const allPostsData = fileNames.map((fileName) => {
     // Remove ".md" from file name to get id
-    const id = fileName.replace(/\.md$/, '')
+    const id = fileName.replace(/\.md$/, '').replace(/\.mdx$/, '')
 
     // Read markdown file as string
     const fullPath = path.join(postsDirectory, fileName)
@@ -36,7 +36,7 @@ export function getSortedPostsData() {
       ...matterResult.data
     }
   })
-  //   Sort posts by date
+  // Sort posts by date
   return (allPostsData as PostData[]).sort((a, b) => {
     if (a.date < b.date) {
       return 1
