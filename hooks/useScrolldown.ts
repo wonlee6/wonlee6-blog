@@ -1,7 +1,7 @@
 import {useEffect, useMemo, useRef, useState} from 'react'
 import {throttle} from 'lodash'
 
-const useScrollDown = () => {
+const useScrollDown = (): boolean => {
   const [isScrollDown, setIsScrollDown] = useState(true)
   const beforeScrollY = useRef(0)
 
