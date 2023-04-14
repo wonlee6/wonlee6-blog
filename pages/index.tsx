@@ -2,7 +2,6 @@ import {Inter} from 'next/font/google'
 import Layout from '@/components/layout'
 import {GetStaticProps} from 'next'
 import {PostData, getSortedPostsData} from '@/lib/posts'
-import useScrollDown from '@/hooks/useScrollDown'
 
 const inter = Inter({subsets: ['latin']})
 
@@ -16,9 +15,8 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 export default function Home({allPostsData}: {allPostsData: PostData[]}) {
-  const isScrollDown = useScrollDown()
   return (
-    <Layout postsData={allPostsData} home isScrollDown={isScrollDown}>
+    <Layout postsData={allPostsData} home>
       {/* <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>

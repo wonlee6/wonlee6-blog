@@ -13,7 +13,6 @@ import Date from '@/components/date'
 import {useRouter} from 'next/router'
 import {MDXRemote} from 'next-mdx-remote'
 import CodeBlock from '@/components/codeBlock'
-import useScrollDown from '@/hooks/useScrollDown'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostIds()
@@ -59,14 +58,13 @@ const components = {Button, CodeBlock}
 
 export default function Post({postData, allPostsData}: Props) {
   const router = useRouter()
-  const isScrollDown = useScrollDown()
 
   if (router.isFallback) {
     return <div>...Loading</div>
   }
 
   return (
-    <Layout postsData={allPostsData} home={false} isScrollDown={isScrollDown}>
+    <Layout postsData={allPostsData} home={false}>
       <div>
         <Head>
           <title>{postData.title}</title>

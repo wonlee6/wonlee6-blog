@@ -3,10 +3,13 @@ import EmailIcon from '@mui/icons-material/Email'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import moon from '@/public/images/moon.svg'
 import sun from '@/public/images/sun.svg'
+import useScrollDown from '@/hooks/useScrollDown'
 import styles from './nav.module.css'
 import Image from 'next/image'
 
-function Nav({isScrollDown}: {isScrollDown: boolean}) {
+function Nav() {
+  const isScrollDown = useScrollDown()
+
   const [theme, setTheme] = useState<'dark' | 'light'>(() =>
     typeof window !== 'undefined'
       ? localStorage.getItem('theme') === 'dark'
