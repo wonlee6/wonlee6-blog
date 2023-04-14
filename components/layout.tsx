@@ -13,6 +13,7 @@ interface Props {
 }
 
 const DynamicNav = dynamic(() => import('./nav'), {
+  ssr: false,
   loading: () => <p>Loading...</p>
 })
 
