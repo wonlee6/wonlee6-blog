@@ -1,15 +1,13 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useMemo, useRef, useState} from 'react'
 import EmailIcon from '@mui/icons-material/Email'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import moon from '@/public/images/moon.svg'
 import sun from '@/public/images/sun.svg'
-import useScrollDown from '@/hooks/useScrollDown'
 import styles from './nav.module.css'
 import Image from 'next/image'
+import {throttle} from 'lodash'
 
 function Nav() {
-  const isScrollDown = useScrollDown()
-
   const [theme, setTheme] = useState<'dark' | 'light'>(() =>
     typeof window !== 'undefined'
       ? localStorage.getItem('theme') === 'dark'
@@ -38,6 +36,31 @@ function Nav() {
       )
     }
   }, [theme])
+
+  const [isScrollDown, setIsScrollDown] = useState(true)
+  const beforeScrollY = useRef(0)
+
+  const scrollEvent = useMemo(
+    () =>
+      throttle(() => {
+        const currentScrollY = window.scrollY
+        if (beforeScrollY.current < currentScrollY) {
+          setIsScrollDown(false)
+        } else {
+          setIsScrollDown(true)
+        }
+        beforeScrollY.current = currentScrollY
+      }, 300),
+    [beforeScrollY]
+  )
+
+  useEffect(() => {
+    window.addEventListener('scroll', scrollEvent)
+    return () => {
+      window.removeEventListener('scroll', scrollEvent)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <nav
