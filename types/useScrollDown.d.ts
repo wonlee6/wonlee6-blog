@@ -1,4 +1,4 @@
-declare module 'useScrollDown' {
+declare module 'useScrollDown.ts' {
   const noTypesYet: any
   export default noTypesYet
 }
