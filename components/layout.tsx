@@ -11,24 +11,28 @@ interface Props {
   home: boolean
   postsData: PostData[]
 }
-
 export default function Layout(props: Props) {
   return (
-    <main className='flex flex-col h-screen bg-white text-gray800 dark:bg-black dark:text-gray-200'>
+    <main
+      className={`flex flex-col h-screen bg-white text-gray800 dark:bg-black dark:text-white`}>
       <Nav />
-      <section className={`h-screen p-3 mt-20 ${styles.container}`}>
+      <section className={`${styles.container} h-full`}>
         <aside
-          className='h-100 w-100'
+          className='h-100 w-100 mt-20'
           style={{borderRight: '1px solid #E7EBF0'}}>
           <MenuList postsData={props.postsData} />
         </aside>
-        <article className='flex-1 h-100 pl-3'>
+        <article className='flex-1 h-100 pl-3 mt-20'>
           {props.children}
           {!props.home && (
             <>
               <Utterance />
-              <div className={styles.backToHome}>
-                <Link href='/'>← Back to home</Link>
+              <div>
+                <Link
+                  className='text-teal-500 font-semibold hover:text-teal-600'
+                  href='/'>
+                  ← Back to home
+                </Link>
               </div>
             </>
           )}

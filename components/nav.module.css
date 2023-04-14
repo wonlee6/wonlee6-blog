@@ -9,6 +9,11 @@
   box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 8px;
 }
 
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
 .icon:hover {
   color: darkgray;
 }
@@ -25,4 +30,8 @@
   100% {
     transform: translateY(0px);
   }
+}
+
+@media only screen and (max-width: 480px) {
+  /* screen width < 480px 일떄 */
 }
