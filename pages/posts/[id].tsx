@@ -44,7 +44,7 @@ interface Props {
   allPostsData: PostData[]
 }
 
-const Button = ({children}: {children: any}) => {
+const Button = ({children}: {children: any}): JSX.Element => {
   return (
     <button
       className='bg-black dark:bg-white text-lg text-teal-200 dark:text-teal-700 rounded-lg px-5'
@@ -56,7 +56,7 @@ const Button = ({children}: {children: any}) => {
 
 const components = {Button, CodeBlock}
 
-export default function Post({postData, allPostsData}: Props) {
+export default function Post({postData, allPostsData}: Props): JSX.Element {
   const router = useRouter()
 
   if (router.isFallback) {

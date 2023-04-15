@@ -1,9 +1,6 @@
-import {Inter} from 'next/font/google'
 import Layout from '@/components/layout'
 import {GetStaticProps} from 'next'
 import {PostData, getSortedPostsData} from '@/lib/posts'
-
-const inter = Inter({subsets: ['latin']})
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData()

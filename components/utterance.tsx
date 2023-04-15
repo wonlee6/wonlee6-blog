@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {memo} from 'react'
 
-function Utterance() {
+function Utterance(): JSX.Element {
   return (
     <section
-      ref={(elem) => {
+      ref={(elem): void => {
         if (!elem) return
 
         const scriptElment = document.createElement('script')
@@ -20,4 +20,4 @@ function Utterance() {
   )
 }
 
-export default React.memo(Utterance)
+export default memo(Utterance)

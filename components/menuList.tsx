@@ -1,5 +1,4 @@
-import React, {useState, useMemo} from 'react'
-import ListSubheader from '@mui/material/ListSubheader'
+import React, {useState, useMemo, memo} from 'react'
 import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
@@ -9,7 +8,6 @@ import ExpandMore from '@mui/icons-material/ExpandMore'
 import Divider from '@mui/material/Divider'
 import {PostData, Tag} from '@/lib/posts'
 import Link from 'next/link'
-import styles from './layout.module.css'
 import {useRouter} from 'next/router'
 
 interface ListModel {
@@ -19,8 +17,6 @@ interface ListModel {
 
 function MenuList({postsData}: {postsData: PostData[]}) {
   const {query} = useRouter()
-  const [selectedItem, setSelectedItem] = useState(null)
-
   const [open, setOpen] = useState<{[K: string]: boolean}>(
     postsData
       .reduce(
@@ -118,4 +114,4 @@ function MenuList({postsData}: {postsData: PostData[]}) {
     </>
   )
 }
-export default React.memo(MenuList)
+export default memo(MenuList)

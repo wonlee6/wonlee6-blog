@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useRef, useState} from 'react'
+import React, {memo, useEffect, useMemo, useRef, useState} from 'react'
 import EmailIcon from '@mui/icons-material/Email'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import moon from '@/public/images/moon.svg'
@@ -106,4 +106,4 @@ function Nav() {
   )
 }
 
-export default React.memo(Nav)
+export default memo(Nav)
