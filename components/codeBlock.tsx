@@ -1,5 +1,6 @@
-import SyntaxHighlighter from 'react-syntax-highlighter'
-import {a11yDark} from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+// import SyntaxHighlighter from 'react-syntax-highlighter'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 const CopyButton = ({target}: {target: any}) => {
   const handleCopy = async () => {
@@ -26,7 +27,7 @@ export default function CodeBlock({children}: {children: any}) {
   return (
     <div className='relative'>
       <CopyButton target={children} />
-      <SyntaxHighlighter showLineNumbers style={a11yDark}>
+      <SyntaxHighlighter showLineNumbers style={vscDarkPlus} language='jsx'>
         {children}
       </SyntaxHighlighter>
     </div>

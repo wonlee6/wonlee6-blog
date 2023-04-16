@@ -47,17 +47,17 @@ interface Props {
   allPostsData: PostData[]
 }
 
-const Button = ({children}: {children: any}): JSX.Element => {
-  return (
-    <button
-      className='bg-black dark:bg-white text-lg text-teal-200 dark:text-teal-700 rounded-lg px-5'
-      onClick={() => alert(`thanks to ${children}`)}>
-      {children}
-    </button>
-  )
-}
+// const Button = ({children}: {children: any}): JSX.Element => {
+//   return (
+//     <button
+//       className='bg-black dark:bg-white text-lg text-teal-200 dark:text-teal-700 rounded-lg px-5'
+//       onClick={() => alert(`thanks to ${children}`)}>
+//       {children}
+//     </button>
+//   )
+// }
 
-const components = {Button, CodeBlock}
+const components = {CodeBlock}
 
 export default function Post({postData, allPostsData}: Props): JSX.Element {
   const router = useRouter()
@@ -73,7 +73,7 @@ export default function Post({postData, allPostsData}: Props): JSX.Element {
         style={{borderRight: '1px solid #E7EBF0'}}>
         <MenuList postsData={allPostsData} />
       </aside>
-      <article className='w-full h-full pl-4 mt-20'>
+      <article className='w-3/4 h-full pl-4 mt-20'>
         <div>
           <Head>
             <title>{postData.title}</title>

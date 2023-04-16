@@ -1,0 +1,157 @@
+---
+title: '기본 정보'
+date: '2023-03-30'
+tag: 'Next'
+---
+
+<p style={{fontSize: "1.3rem"}}>1. Data Fetching</p>
+<br />
+<p>Next는 모든 페이지를 기본적으로 Pre-Render(HTML 보여줌) 한다.<br />
+SSR은 <b>요청 타임</b>에 Pre-Render<br />
+SSG는 <b>빌드 타임</b>에 Pre-Render<br /></p>
+<br />
+<p>- SSR: 서버에 요청할 때마다 데이터를 받아와 보여준다</p>
+<CodeBlock>
+{`export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    props: {
+      time: new Date().toISOString()
+    }
+  }
+}`}
+</CodeBlock>
+<br />
+<p>- SSG: <b>Build Time</b>에 데이터를 받아와 보여준다. (npm dev === SSR처럼 동작)</p>
+<CodeBlock>
+{`export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      time: new Date().toISOString()
+    }
+  }
+}`}
+</CodeBlock>
+<br />
+<p>- ISR: 특정 주기마다 데이터를 받아와 보여준다.</p>
+<CodeBlock>
+{`export const getStaticProps: GetStaticProps = () => {
+  return {
+    props: {
+      time: new Date().toISOString()
+    },
+    revalidate: 1 // 1초
+  }s
+}`}
+</CodeBlock>
+<br />
+<p style={{fontSize: "1.3rem"}}>2. Layout/Pages/Image</p>
+<br />
+<p>Layout 공통화</p>
+<CodeBlock>
+{`function MyApp({Component, pageProps}: AppProps) {
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  )
+}`}
+</CodeBlock>
+<br />
+<p>여러 개의 레이아웃을 사용할 경우</p>
+<CodeBlock>
+{`// _app.tsx
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+function MyApp({Component, pageProps}: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page)
+  return getLayout(<Component {...pageProps} />)
+}
+// ssr.tsx
+const SSR: NextPageWithLayout<Props> = (props: Props) => {
+  return (
+    <div>
+      <h1>SSR: {props.time}</h1>
+    </div>
+  )
+}
+SSR.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>
+      <SubLayout>{page}</SubLayout>
+    </Layout>
+  )
+}`}
+</CodeBlock>
+<p style={{fontSize: "1.3rem"}}>3. Dynamic Routes</p>
+<br />
+<p>파일을 만들 때 `[slug].tsx` 형식으로 만든다.</p>
+<br />
+<p>route 값을 꺼내 올 때</p>
+<CodeBlock>
+{`const route = useRouter()
+const {slug} = route.query`}
+</CodeBlock>
+<br />
+<p><code>[[slug]].tsx</code> 이렇게 하면 옵셔널하게 사용 가능</p>
+<p><b>route.push</b>를 이용하여 원하는 URL로 이동 가능</p>
+<p>- ex) route.push('/category/food?date=2022/12/22')</p>
+<br />
+<p style={{fontSize: "1.3rem"}}>4. URL를 바꾸는 방법</p>
+<br />
+<p>1. <code>location.replace("url")</code>: 로컬 <em>state</em> 유지 안됨(리렌더)</p>
+<p>2. <code>route.push(url)</code>: 로컬 <em>state</em> 유지, data fetching</p>
+<p>3. <code>rotue.push(url, as, \{shallow: true\})</code>: 로컬 <em>state</em> 유지, data fetching X</p>
+<CodeBlock>
+{`location.replace('/myInfo/setting?status=editing') // 초기로 돌아감
+router.push('/myInfo/setting?status=editing') // data fetching 일어남
+router.push('/myInfo/setting?status=editing', undefined, {
+  shallow: true
+}) // data fetching 일어나지 않음`}
+</CodeBlock>
+<p style={{fontSize: "1.3rem"}}>5. API 통신</p>
+<br />
+<p>- api 폴더 안에 있는 경로가 data fetch url</p>
+<br />
+<CodeBlock>
+{`// /api/hello.ts
+type Data = {
+	name: string
+}
+export default function handler(
+	req: NextApiRequest,
+	res: NextApiResponse<Data>,
+) {
+	res.status(200).json({ name: 'John Doe' })
+}
+// pages/[username]/[info].tsx
+const router = useRouter()
+	const { username, info} = router.query
+	const [name, setName] = useState('?')
+	useEffect(() => {
+		if (!uid) return
+		fetch('/api/hello')
+			.then((res) => res.json())
+			.then((data) => setName(data.name))
+	}, [uid])
+...`}
+</CodeBlock>
+<br />
+<p>쿠키 및 에러, redirect</p>
+<CodeBlock>
+{`export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
+  const {uid} = req.query
+  const cokies = req.cookies
+  // res
+  // 	.status(200)
+  // 	.json({name: \`John Doe $\{uid\}\`, cokies: \`$\{JSON.stringify(cokies)\}\`})
+  // res.status(404).send({ error: 'error' })
+  res.redirect(307, '/api/hello')
+}`}
+</CodeBlock>

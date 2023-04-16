@@ -5,7 +5,7 @@ import {serialize} from 'next-mdx-remote/serialize'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
-export type Tag = 'react' | 'next' | 'javascript' | 'typescript' | 'etc'
+export type Tag = 'React' | 'next' | 'Javascript' | 'Typescript' | 'etc'
 
 export interface PostData {
   id: string
@@ -79,8 +79,8 @@ export async function getPostData(id: string) {
     const matterResult = matter(fileContents)
     // Use remark to convert markdown into HTML string
     // const processedContent = await remark()
-    //   .use(html)
-    //   .process(matterResult.content)
+      // .use(html)
+      // .process(matterResult.content)
     // const processedContent = await unified()
     //   .use(remarkParse)
     //   .use(remarkGfm)

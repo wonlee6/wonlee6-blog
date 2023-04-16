@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import {a11yDark} from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+import rehypeRaw from 'rehype-raw'
 
 export default function MarkdownView({
   contentHtml
@@ -12,6 +13,7 @@ export default function MarkdownView({
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
+      rehypePlugins={[rehypeRaw]}
       components={{
         code({inline, className, children, ...props}) {
           const match = /language-(\w+)/.exec(className || '')
@@ -68,11 +70,13 @@ export default function MarkdownView({
           )
         }
       }}>
-      {contentHtml
+      {
+        contentHtml
         .replace(/\n\s\n\s/gi, '\n\n&nbsp;\n\n')
         .replace(/\*\*/gi, '@$_%!^')
         .replace(/@\$_%!\^/gi, '**')
-        .replace(/<\/?u>/gi, '*')}
+        .replace(/<\/?u>/gi, '*')
+      }
     </ReactMarkdown>
   )
 }

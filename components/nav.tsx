@@ -63,46 +63,51 @@ function Nav() {
   }, [])
 
   return (
-    <nav
-      id={`${styles.navbar}`}
-      className={`${isScrollDown ? styles.downdown : ''}`}>
-      <div className={`${styles.container} flex justify-between items-center`}>
-        <div className='text-3xl font-semibold'>
-          <span>!!?!?!!??!</span>
+    <header
+      className={`w-full h-16 z-10 flex justify-center items-center bg-white bg-opacity-50 dark:bg-slate-950 dark:bg-opacity-50 dark:border-b dark:border-b-orange-200 ${
+        isScrollDown ? styles.downdown : ''
+      }`}>
+      <nav
+        // id={`${styles.navbar}`}
+        className={`w-3/4`}>
+        <div className={`flex justify-between items-center`}>
+          <div className='text-3xl font-semibold'>
+            <span>!!?!?!!??!</span>
+          </div>
+          <div className='w-36 text-4xl flex justify-between items-center'>
+            <button onClick={handleClick}>
+              {theme === 'light' ? (
+                <Image
+                  className={`cursor-pointer hover:opacity-70`}
+                  width={30}
+                  height={40}
+                  src={moon}
+                  alt={moon}
+                />
+              ) : (
+                <Image
+                  className={`cursor-pointer hover:opacity-90`}
+                  width={30}
+                  height={40}
+                  src={sun}
+                  alt={sun}
+                />
+              )}
+            </button>
+            <GitHubIcon
+              titleAccess='wonlee6'
+              fontSize={'inherit'}
+              className={`cursor-pointer ${styles.icon}`}
+            />
+            <EmailIcon
+              titleAccess='wonlee6@gamil.com'
+              fontSize={'inherit'}
+              className={`cursor-pointer ${styles.icon}`}
+            />
+          </div>
         </div>
-        <div className='w-36 text-4xl flex justify-between items-center'>
-          <button onClick={handleClick}>
-            {theme === 'light' ? (
-              <Image
-                className={`cursor-pointer hover:opacity-70`}
-                width={30}
-                height={40}
-                src={moon}
-                alt={moon}
-              />
-            ) : (
-              <Image
-                className={`cursor-pointer hover:opacity-90`}
-                width={30}
-                height={40}
-                src={sun}
-                alt={sun}
-              />
-            )}
-          </button>
-          <GitHubIcon
-            titleAccess='wonlee6'
-            fontSize={'inherit'}
-            className={`cursor-pointer ${styles.icon}`}
-          />
-          <EmailIcon
-            titleAccess='wonlee6@gamil.com'
-            fontSize={'inherit'}
-            className={`cursor-pointer ${styles.icon}`}
-          />
-        </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   )
 }
 

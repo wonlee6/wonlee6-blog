@@ -9,7 +9,7 @@ interface Props {
 export default function Layout(props: Props) {
   return (
     <main
-      className={`flex flex-col h-screen bg-white text-gray-800 dark:bg-black dark:text-white`}>
+      className={`flex flex-col h-screen dark:h-full bg-white text-gray-800 dark:bg-black dark:text-white`}>
       <Nav />
       {props.children}
     </main>
