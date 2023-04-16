@@ -1,4 +1,3 @@
-import Layout from '@/components/layout'
 import {
   PostData,
   getAllPostIds,
@@ -13,6 +12,10 @@ import Date from '@/components/date'
 import {useRouter} from 'next/router'
 import {MDXRemote} from 'next-mdx-remote'
 import CodeBlock from '@/components/codeBlock'
+import MenuList from '@/components/menuList'
+import Utterance from '@/components/utterance'
+import Link from 'next/link'
+import MarkdownView from '@/components/markdownView'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostIds()
@@ -64,24 +67,39 @@ export default function Post({postData, allPostsData}: Props): JSX.Element {
   }
 
   return (
-    <Layout postsData={allPostsData} home={false}>
-      <div>
-        <Head>
-          <title>{postData.title}</title>
-        </Head>
-        <article>
-          <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-          <div className={utilStyles.lightText}>
-            <Date dateString={postData.date} />
+    <section className='h-full flex justify-center w-3/4 mt-0 mb-0 ml-auto mr-auto'>
+      <aside
+        className='h-100 w-1/4 mt-20'
+        style={{borderRight: '1px solid #E7EBF0'}}>
+        <MenuList postsData={allPostsData} />
+      </aside>
+      <article className='w-full h-full pl-4 mt-20'>
+        <div>
+          <Head>
+            <title>{postData.title}</title>
+          </Head>
+          <div>
+            <h1 className={utilStyles.headingXl}>{postData.title}</h1>
+            <div className={utilStyles.lightText}>
+              <Date dateString={postData.date} />
+            </div>
+            {postData.contentHtml && (
+              <MarkdownView contentHtml={postData.contentHtml} />
+            )}
+            {postData.mdxSource && (
+              <MDXRemote {...postData.mdxSource} components={components} />
+            )}
+            <Utterance />
+            <div>
+              <Link
+                className='text-teal-500 font-semibold hover:text-teal-600'
+                href='/'>
+                ← Back to home
+              </Link>
+            </div>
           </div>
-          {postData.contentHtml && (
-            <div dangerouslySetInnerHTML={{__html: postData.contentHtml}} />
-          )}
-          {postData.mdxSource && (
-            <MDXRemote {...postData.mdxSource} components={components} />
-          )}
-        </article>
-      </div>
-    </Layout>
+        </div>
+      </article>
+    </section>
   )
 }

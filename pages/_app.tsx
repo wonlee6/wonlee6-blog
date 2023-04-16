@@ -2,6 +2,7 @@ import {ReactElement, ReactNode} from 'react'
 import {NextPage} from 'next'
 import type {AppProps} from 'next/app'
 import ErrorBoundary from '@/components/errorBoundary'
+import Layout from '@/components/layout'
 import '@/styles/globals.css'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -21,7 +22,9 @@ export default function App({
 
   return (
     <ErrorBoundary>
-      <Component {...pageProps} />
+      <Layout home>
+        <Component {...pageProps} />
+      </Layout>
     </ErrorBoundary>
   )
 }

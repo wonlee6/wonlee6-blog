@@ -1,6 +1,7 @@
-import Layout from '@/components/layout'
 import {GetStaticProps} from 'next'
 import {PostData, getSortedPostsData} from '@/lib/posts'
+import {Fragment} from 'react'
+import Link from 'next/link'
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData()
@@ -13,22 +14,12 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export default function Home({allPostsData}: {allPostsData: PostData[]}) {
   return (
-    <Layout postsData={allPostsData} home>
-      {/* <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({id, date, title}) => (
-            <li className={utilStyles.listItem} key={id}>
-              {title}
-              <br />
-              {id}
-              <br />
-              {date}
-            </li>
-          ))}
-        </ul>
-      </section> */}
-      <div>awodkawokd</div>
-    </Layout>
+    <section className='mt-28'>
+      {allPostsData.map((item) => (
+        <Fragment key={item.id}>
+          <Link href={`/posts/${item.id}`}>{item.title}</Link>
+        </Fragment>
+      ))}
+    </section>
   )
 }

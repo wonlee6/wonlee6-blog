@@ -1,17 +1,19 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2022": true
   },
   "extends": [
     "eslint:recommended",
+    "next/core-web-vitals",
     "plugin:react/recommended",
     "plugin:@next/next/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "plugin:mdx/recommended"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -23,9 +25,10 @@
   "plugins": ["react", "react-hooks", "tailwindcss", "@typescript-eslint", "prettier"],
   "rules": { 
     "react/prop-types": 0,
+    "react/no-children-prop": 0,
     "react/react-in-jsx-scope": 0,
     "react-hooks/exhaustive-deps": ["warn"], // hooks의 의존성배열이 충분하지 않을때 강제로 의존성을 추가하는 규칙을 완화
-    "react/jsx-props-no-spreading": [1, { "custom": "ignore" }], // props spreading을 허용하지 않는 규칙 해제
+    "react/jsx-props-no-spreading": "off", // props spreading을 허용하지 않는 규칙 해제 [1, { "custom": "ignore" }]
     // "indent": ["error", 2],
     "linebreak-style": ["error", "unix"],
     // "quotes": ["error", "single"],
@@ -51,7 +54,8 @@
       }
     ],
     "no-shadow": 0,
-    "jsx-a11y/no-noninteractive-element-interactions": 0
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }]
   },
   "parser": "@typescript-eslint/parser",
   "settings": { 
@@ -64,5 +68,7 @@
     "import/resolver": { 
       "typescript": "./tsconfig.json" 
     }
+    // "mdx/code-blocks": true,
+		// "mdx/language-mapper": {}
   }
 }
