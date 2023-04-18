@@ -5,7 +5,13 @@ import {serialize} from 'next-mdx-remote/serialize'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
-export type Tag = 'React' | 'next' | 'Javascript' | 'Typescript' | 'etc'
+export type Tag =
+  | 'React'
+  | 'Next'
+  | 'Javascript'
+  | 'Typescript'
+  | 'Java'
+  | 'Etc'
 
 export interface PostData {
   id: string
@@ -74,13 +80,12 @@ export async function getPostData(id: string) {
 
   if (mdExist) {
     const fileContents = fs.readFileSync(fullMdPath, 'utf8')
-
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents)
     // Use remark to convert markdown into HTML string
     // const processedContent = await remark()
-      // .use(html)
-      // .process(matterResult.content)
+    // .use(html)
+    // .process(matterResult.content)
     // const processedContent = await unified()
     //   .use(remarkParse)
     //   .use(remarkGfm)
@@ -93,7 +98,7 @@ export async function getPostData(id: string) {
     // Combine the data with the id and contentHtml
     return {
       id,
-      contentHtml: matterResult.content,
+      contentHtml: matterResult.content.toString(),
       ...matterResult.data
     }
   }

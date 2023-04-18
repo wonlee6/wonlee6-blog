@@ -1,27 +1,27 @@
+import React from 'react'
+import {GetStaticPaths, GetStaticProps} from 'next'
+import Head from 'next/head'
+import Link from 'next/link'
+import dynamic from 'next/dynamic'
+import {useRouter} from 'next/router'
+import {MDXRemote} from 'next-mdx-remote'
 import {
   PostData,
   getAllPostIds,
   getPostData,
   getSortedPostsData
 } from '@/lib/posts'
-import {GetStaticPaths, GetStaticProps} from 'next'
-import Head from 'next/head'
-import React from 'react'
-import utilStyles from '../../styles/utils.module.css'
 import Date from '@/components/date'
-import {useRouter} from 'next/router'
-import {MDXRemote} from 'next-mdx-remote'
 import CodeBlock from '@/components/codeBlock'
 import MenuList from '@/components/menuList'
 import Utterance from '@/components/utterance'
-import Link from 'next/link'
-import MarkdownView from '@/components/markdownView'
+import utilStyles from '../../styles/utils.module.css'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostIds()
   return {
     paths,
-    fallback: false
+    fallback: true
   }
 }
 export const getStaticProps: GetStaticProps = async ({params}) => {
@@ -59,6 +59,11 @@ interface Props {
 
 const components = {CodeBlock}
 
+const EditerMarkdown = dynamic(() => import('@/components/markdownView'), {
+  loading: () => <p>Loading...</p>,
+  ssr: false
+})
+
 export default function Post({postData, allPostsData}: Props): JSX.Element {
   const router = useRouter()
 
@@ -84,7 +89,9 @@ export default function Post({postData, allPostsData}: Props): JSX.Element {
               <Date dateString={postData.date} />
             </div>
             {postData.contentHtml && (
-              <MarkdownView contentHtml={postData.contentHtml} />
+              <div className='prose'>
+                <EditerMarkdown contentHtml={postData.contentHtml} />
+              </div>
             )}
             {postData.mdxSource && (
               <MDXRemote {...postData.mdxSource} components={components} />

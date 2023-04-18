@@ -1,17 +1,12 @@
 ---
-title: 'Next tutorial'
+title: 'Basic Next'
 date: '2023-04-16'
 tag: 'Next'
 ---
 
-# Next.js    
+# Next.js
 
-<br />
-
-
-## Data Fetching    
-
-
+## Data Fetching
 
 - SSR: 서버에 요청할 때마다 데이터를 받아와 보여준다
 

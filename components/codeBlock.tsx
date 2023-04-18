@@ -1,6 +1,5 @@
-// import SyntaxHighlighter from 'react-syntax-highlighter'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+import {vscDarkPlus} from 'react-syntax-highlighter/dist/cjs/styles/prism'
 
 const CopyButton = ({target}: {target: any}) => {
   const handleCopy = async () => {

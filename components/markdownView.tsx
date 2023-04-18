@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import SyntaxHighlighter from 'react-syntax-highlighter'
-import {a11yDark} from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 import rehypeRaw from 'rehype-raw'
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+import {vscDarkPlus} from 'react-syntax-highlighter/dist/cjs/styles/prism'
 
 export default function MarkdownView({
   contentHtml
@@ -32,7 +32,7 @@ export default function MarkdownView({
             // 언어가 선택됨
             <SyntaxHighlighter
               children={String(children).replace(/\n$/, '')}
-              style={a11yDark as any}
+              style={vscDarkPlus as any}
               language={match[1]}
               PreTag='div'
               {...props}
@@ -41,7 +41,7 @@ export default function MarkdownView({
             // 언어가 선택되지 않음
             <SyntaxHighlighter
               children={String(children).replace(/\n$/, '')}
-              style={a11yDark as any}
+              style={vscDarkPlus as any}
               language='textile'
               PreTag='div'
               {...props}
@@ -70,13 +70,12 @@ export default function MarkdownView({
           )
         }
       }}>
-      {
-        contentHtml
+      {contentHtml
+        .toString()
         .replace(/\n\s\n\s/gi, '\n\n&nbsp;\n\n')
         .replace(/\*\*/gi, '@$_%!^')
         .replace(/@\$_%!\^/gi, '**')
-        .replace(/<\/?u>/gi, '*')
-      }
+        .replace(/<\/?u>/gi, '*')}
     </ReactMarkdown>
   )
 }
