@@ -1,6 +1,9 @@
+import {useMemo, useState} from 'react'
 import {GetStaticProps} from 'next'
-import {PostData, getSortedPostsData} from '@/lib/posts'
 import Link from 'next/link'
+import {PostData, getSortedPostsData} from '@/lib/posts'
+import Pagination from '@mui/material/Pagination'
+import Stack from '@mui/material/Stack'
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData()
@@ -12,8 +15,26 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 export default function Home({allPostsData}: {allPostsData: PostData[]}) {
+  const postsLength = Math.ceil(allPostsData.length / 10)
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const handlePagination = (
+    event: React.ChangeEvent<unknown>,
+    page: number
+  ) => {
+    setCurrentPage(page)
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto'
+    })
+  }
+
+  const filteredPostsData = useMemo(() => {
+    return [...allPostsData].slice(currentPage * 10 - 10, currentPage * 10)
+  }, [allPostsData, currentPage])
+
   return (
-    <main className='h-full w-3/4 mt-0 mb-0 ml-auto mr-auto'>
+    <main className='h-full w-3/4 my-0 mx-auto'>
       <div className='mt-28 w-full h-full mb-auto divide-y divide-gray-200 dark:divide-gray-700'>
         <div className='space-y-2 pt-6 pb-8 md:space-y-5'>
           <h1 className='text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14'>
@@ -21,7 +42,7 @@ export default function Home({allPostsData}: {allPostsData: PostData[]}) {
           </h1>
         </div>
         <ul className='divide-y divide-gray-200 dark:divide-gray-700'>
-          {allPostsData.map((item) => (
+          {filteredPostsData.map((item) => (
             <li key={item.id} className='py-12'>
               <article>
                 <div className='space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0'>
@@ -52,6 +73,17 @@ export default function Home({allPostsData}: {allPostsData: PostData[]}) {
             </li>
           ))}
         </ul>
+        <div className='mb-28 pt-12 flex justify-center'>
+          <Stack spacing={2}>
+            <Pagination
+              page={currentPage}
+              onChange={handlePagination}
+              count={postsLength}
+              color='primary'
+              size='large'
+            />
+          </Stack>
+        </div>
       </div>
     </main>
   )
