@@ -2,6 +2,7 @@
 title: 'Array Method'
 date: '2021-06-13'
 tag: 'Javascript'
+description: 'javascript의 Array method 소개'
 ---
 
 ## 요소 추가 메서드

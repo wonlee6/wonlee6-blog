@@ -2,6 +2,7 @@
 title: 'Map and Set'
 date: '2021-06-17'
 tag: 'Javascript'
+description: 'Array Method가 아닌 Map과 Set에 대한 정리'
 ---
 
 ## Map

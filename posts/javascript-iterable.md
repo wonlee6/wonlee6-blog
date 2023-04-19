@@ -2,6 +2,7 @@
 title: 'Iterable Iterator'
 date: '2021-06-13'
 tag: 'Javascript'
+description: 'Iterable이 어떤건지, Iterator가 무엇인지 간략한 소개'
 ---
 
 > 🕵️‍♂️ iterable = 반복가능한, 배열을 일반화한 객체 - 대표적으로 배열, 문자열

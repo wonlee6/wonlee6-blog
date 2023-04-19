@@ -2,6 +2,7 @@
 title: 'React - TypeScript'
 date: '2021-11-14'
 tag: 'React'
+description: 'React에 Typescript를 적용하면 어떤식으로 사용하면 좋을까?'
 ---
 
 ## TypeScript 기본

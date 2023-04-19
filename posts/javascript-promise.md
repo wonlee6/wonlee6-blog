@@ -2,6 +2,7 @@
 title: 'Promise'
 date: '2021-06-13'
 tag: 'Javascript'
+description: 'javascript의 비동기 작업을 처리할 때 사용하는 Promise에 대해'
 ---
 
 > 프로미스는 비동기 작업을 처리할 때 사용되는 객체이다.

@@ -2,6 +2,7 @@
 title: 'Basic Next'
 date: '2023-04-16'
 tag: 'Next'
+description: 'Next의 특징인 SSR, SSG, ISR 및 API 통신 방법'
 ---
 
 ## Data Fetching

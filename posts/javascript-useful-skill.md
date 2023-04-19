@@ -2,6 +2,7 @@
 title: '알면 좋은 정보'
 date: '2021-06-13'
 tag: 'Javascript'
+description: '알고 있으면 나름 도움되는 javascript skill'
 ---
 
 ### 1. Default Parameter

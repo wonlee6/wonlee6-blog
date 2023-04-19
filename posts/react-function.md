@@ -2,6 +2,7 @@
 title: '자주 사용하는 함수들'
 date: '2021-10-26'
 tag: 'React'
+description: '알고 있으면 도움되는 함수들'
 ---
 
 1. url에 query 붙일 때
