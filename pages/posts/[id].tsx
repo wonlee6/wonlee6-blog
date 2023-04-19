@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
-import {MDXRemote} from 'next-mdx-remote'
+// import {MDXRemote} from 'next-mdx-remote'
 import {
   PostData,
   getAllPostIds,
@@ -12,9 +12,9 @@ import {
   getSortedPostsData
 } from '@/lib/posts'
 import Date from '@/components/date'
-import CodeBlock from '@/components/codeBlock'
-import MenuList from '@/components/menuList'
-import Utterance from '@/components/utterance'
+// import CodeBlock from '@/components/codeBlock'
+// import MenuList from '@/components/menuList'
+// import Utterance from '@/components/utterance'
 import utilStyles from '../../styles/utils.module.css'
 import LoadingSpinner from '@/components/loadingSpinner'
 
@@ -58,9 +58,19 @@ interface Props {
 //   )
 // }
 
-const components = {CodeBlock}
+// const components = {CodeBlock}
 
 const EditerMarkdown = dynamic(() => import('@/components/markdownView'), {
+  loading: () => <LoadingSpinner />,
+  ssr: false
+})
+
+const MenuList = dynamic(() => import('@/components/menuList'), {
+  loading: () => <LoadingSpinner />,
+  ssr: false
+})
+
+const Utterance = dynamic(() => import('@/components/utterance'), {
   loading: () => <LoadingSpinner />,
   ssr: false
 })
@@ -94,9 +104,9 @@ export default function Post({postData, allPostsData}: Props): JSX.Element {
                 <EditerMarkdown contentHtml={postData.contentHtml} />
               </div>
             )}
-            {postData.mdxSource && (
+            {/* {postData.mdxSource && (
               <MDXRemote {...postData.mdxSource} components={components} />
-            )}
+            )} */}
             <Utterance />
             <div>
               <Link
