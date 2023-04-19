@@ -1,10 +1,8 @@
 ---
-title: 'Javascript - 알면 좋은 정보'
+title: '알면 좋은 정보'
 date: '2021-06-13'
 tag: 'Javascript'
 ---
-
-# javascript Study
 
 ### 1. Default Parameter
 

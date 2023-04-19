@@ -1,5 +1,5 @@
 ---
-title: 'React - API 통신'
+title: 'API 통신'
 date: '2021-11-14'
 tag: 'React'
 ---

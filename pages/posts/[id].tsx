@@ -16,6 +16,7 @@ import CodeBlock from '@/components/codeBlock'
 import MenuList from '@/components/menuList'
 import Utterance from '@/components/utterance'
 import utilStyles from '../../styles/utils.module.css'
+import LoadingSpinner from '@/components/loadingSpinner'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostIds()
@@ -60,7 +61,7 @@ interface Props {
 const components = {CodeBlock}
 
 const EditerMarkdown = dynamic(() => import('@/components/markdownView'), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <LoadingSpinner />,
   ssr: false
 })
 
@@ -68,7 +69,7 @@ export default function Post({postData, allPostsData}: Props): JSX.Element {
   const router = useRouter()
 
   if (router.isFallback) {
-    return <div>...Loading</div>
+    return <p>...Loading</p>
   }
 
   return (
@@ -89,7 +90,7 @@ export default function Post({postData, allPostsData}: Props): JSX.Element {
               <Date dateString={postData.date} />
             </div>
             {postData.contentHtml && (
-              <div className='prose'>
+              <div className='prose prose-slate mx-auto prose-headings:underline dark:prose-invert dark:prose-blockquote:text-black'>
                 <EditerMarkdown contentHtml={postData.contentHtml} />
               </div>
             )}

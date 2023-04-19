@@ -1,4 +1,12 @@
-import React, {memo, useEffect, useMemo, useRef, useState} from 'react'
+import React, {
+  Dispatch,
+  SetStateAction,
+  memo,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from 'react'
 import EmailIcon from '@mui/icons-material/Email'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import moon from '@/public/images/moon.svg'
@@ -6,8 +14,14 @@ import sun from '@/public/images/sun.svg'
 import styles from './nav.module.css'
 import Image from 'next/image'
 import {throttle} from 'lodash'
+import Link from 'next/link'
 
-function Nav() {
+interface Props {
+  clientHeight: number
+  setIsShowIcon: Dispatch<SetStateAction<boolean>>
+}
+
+function Nav(props: Props) {
   const [theme, setTheme] = useState<'dark' | 'light'>(() =>
     typeof window !== 'undefined'
       ? localStorage.getItem('theme') === 'dark'
@@ -49,9 +63,14 @@ function Nav() {
         } else {
           setIsScrollDown(true)
         }
+        if (window.scrollY > props.clientHeight / 2) {
+          props.setIsShowIcon(true)
+        } else {
+          props.setIsShowIcon(false)
+        }
         beforeScrollY.current = currentScrollY
       }, 300),
-    [beforeScrollY]
+    [beforeScrollY, props]
   )
 
   useEffect(() => {
@@ -67,12 +86,10 @@ function Nav() {
       className={`w-full h-16 z-10 flex justify-center items-center bg-white bg-opacity-50 dark:bg-slate-950 dark:bg-opacity-50 dark:border-b dark:border-b-orange-200 ${
         isScrollDown ? styles.downdown : ''
       }`}>
-      <nav
-        // id={`${styles.navbar}`}
-        className={`w-3/4`}>
+      <nav className={`w-3/4`}>
         <div className={`flex justify-between items-center`}>
           <div className='text-3xl font-semibold'>
-            <span>!!?!?!!??!</span>
+            <Link href={`/`}>!!?!?!!??!</Link>
           </div>
           <div className='w-36 text-4xl flex justify-between items-center'>
             <button onClick={handleClick}>

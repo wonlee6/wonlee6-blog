@@ -1,10 +1,10 @@
 ---
-title: 'React - Router'
+title: 'React-Router'
 date: '2021-11-26'
 tag: 'React'
 ---
 
-# query
+## query
 
 > react-router v6부터 변경되는 점이 있어 최신 버전에는 적용안될수 있음
 

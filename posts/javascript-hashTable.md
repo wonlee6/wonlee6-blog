@@ -1,10 +1,8 @@
 ---
-title: 'Javascript - HashTable'
+title: 'HashTable'
 date: '2021-06-23'
 tag: 'Javascript'
 ---
-
-# HashTable
 
 ### 데이터를 저장하는 자료구조 중 하나로 빠르게 데이터를 검색할 수 있는 자료구조이다.
 

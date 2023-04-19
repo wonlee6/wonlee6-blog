@@ -18,6 +18,7 @@ export interface PostData {
   title: string
   date: string
   tag: Tag
+  description?: string
 }
 
 export function getSortedPostsData() {

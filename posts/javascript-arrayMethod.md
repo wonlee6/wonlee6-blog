@@ -1,10 +1,8 @@
 ---
-title: 'Javascript - Array Method'
+title: 'Array Method'
 date: '2021-06-13'
 tag: 'Javascript'
 ---
-
-# Array methods
 
 ## 요소 추가 메서드
 

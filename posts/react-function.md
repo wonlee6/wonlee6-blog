@@ -1,12 +1,8 @@
 ---
-title: 'React - 자주 사용하는 함수수'
+title: '자주 사용하는 함수들'
 date: '2021-10-26'
 tag: 'React'
 ---
-
-# function
-
-## 자주 쓰는 함수들
 
 1. url에 query 붙일 때
 

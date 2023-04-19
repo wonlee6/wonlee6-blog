@@ -1,10 +1,10 @@
 ---
-title: 'React - Error Handler'
+title: 'Error Handler'
 date: '2021-10-26'
 tag: 'React'
 ---
 
-# error module
+## error module
 
 ```ts
 export const errorHandler = async (

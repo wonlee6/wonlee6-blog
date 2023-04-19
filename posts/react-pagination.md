@@ -1,10 +1,8 @@
 ---
-title: 'React - Pagination'
+title: 'Pagination'
 date: '2021-10-26'
 tag: 'React'
 ---
-
-# pagination
 
 전체 데이터만 가지고 온다면
 

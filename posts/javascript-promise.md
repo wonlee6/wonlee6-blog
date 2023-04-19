@@ -1,10 +1,8 @@
 ---
-title: 'Javascript - Callback'
+title: 'Promise'
 date: '2021-06-13'
 tag: 'Javascript'
 ---
-
-# Promise
 
 > 프로미스는 비동기 작업을 처리할 때 사용되는 객체이다.
 > `new Promise(reslove, reject)` > `promise` 는 주로 서버에서 데이터를 받아와 화면에 표시하는 작업에 사용되며, `promise`가 만들어질때, executor(reslove, reject 라는 콜백 함수) 함수는 자동으로 실행된다.

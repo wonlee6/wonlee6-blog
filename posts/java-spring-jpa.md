@@ -4,8 +4,6 @@ date: '2022-11-26'
 tag: 'Java'
 ---
 
-# java spring boot 학습
-
 > 환경 설정
 
 - Spring boot v2.6.2

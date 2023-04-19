@@ -1,6 +1,5 @@
 import {GetStaticProps} from 'next'
 import {PostData, getSortedPostsData} from '@/lib/posts'
-import {Fragment} from 'react'
 import Link from 'next/link'
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -14,12 +13,20 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export default function Home({allPostsData}: {allPostsData: PostData[]}) {
   return (
-    <section className='mt-28'>
-      {allPostsData.map((item) => (
-        <Fragment key={item.id}>
-          <Link href={`/posts/${item.id}`}>{item.title}</Link>
-        </Fragment>
-      ))}
+    <section className='h-full w-3/4 mt-0 mb-0 ml-auto mr-auto'>
+      <div className='mt-28 w-full h-full'>
+        {allPostsData.map((item) => (
+          <div key={item.id} className='flex flex-col'>
+            <div className='flex justify-evenly'>
+              <p>
+                Title : <Link href={`/posts/${item.id}`}>{item.title}</Link>
+              </p>
+              <p>{item.date}</p>
+            </div>
+            <div>{item.description ?? ''}</div>
+          </div>
+        ))}
+      </div>
     </section>
   )
 }

@@ -1,10 +1,8 @@
 ---
-title: 'Javascript - Map and Set'
+title: 'Map and Set'
 date: '2021-06-17'
 tag: 'Javascript'
 ---
-
-# Map, Set
 
 ## Map
 

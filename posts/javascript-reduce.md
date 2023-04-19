@@ -1,12 +1,8 @@
 ---
-title: 'Javascript - reduce'
+title: 'Reduce'
 date: '2021-06-20'
 tag: 'Javascript'
 ---
-
-# map, filter, reduce
-
-## reduce
 
 > reduce() 메서드는 배열의 각 요소에 대해 주어진 리듀서(reducer) 함수를 실행하고, 하나의 결과값을 반환합니다.
 > ![reduce](https://www.freecodecamp.org/news/content/images/2019/10/folding-box.gif)

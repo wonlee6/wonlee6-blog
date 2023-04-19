@@ -1,10 +1,8 @@
 ---
-title: 'Javascript - Callback'
+title: 'Callback'
 date: '2021-06-13'
 tag: 'Javascript'
 ---
-
-# CallBack
 
 > 콜백이란 ? 콜백은 다른 함수가 실행을 끝낸 뒤 실행(call back) 되는 함수를 말한다.
 

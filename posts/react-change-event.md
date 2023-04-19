@@ -1,10 +1,8 @@
 ---
-title: 'React - Change Event'
+title: 'hange Event'
 date: '2021-11-14'
 tag: 'React'
 ---
-
-# ChangeEvent
 
 ### 보통 onchage 함수를 통해 이벤트를 다루기도 하지만, HtmlElement에서 직접적으로 접근 가능하다.
 
