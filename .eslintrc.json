@@ -5,15 +5,16 @@
   },
   "extends": [
     "eslint:recommended",
+    "next",
     "next/core-web-vitals",
     "plugin:react/recommended",
     "plugin:@next/next/recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
-    "plugin:mdx/recommended"
+    // "plugin:mdx/recommended",
+    "prettier"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -35,11 +36,23 @@
     "react/react-in-jsx-scope": 0,
     "react-hooks/exhaustive-deps": ["warn"], // hooks의 의존성배열이 충분하지 않을때 강제로 의존성을 추가하는 규칙을 완화
     "react/jsx-props-no-spreading": "off", // props spreading을 허용하지 않는 규칙 해제 [1, { "custom": "ignore" }]
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "react/jsx-filename-extension": [
+      2,
+      {"extensions": [".js", ".jsx", ".ts", ".tsx"]}
+    ],
+    "import/extensions": 0,
+    "no-use-before-define": "off",
+    "import/no-unresolved": 0,
+    "import/no-extraneous-dependencies": 0,
+    "no-shadow": 0,
+    "'@typescript-eslint/explicit-module-boundary-types": 0,
+    "linebreak-style": 0,
+    "jsx-quotes": ["error", "prefer-single"],
     // "indent": ["error", 2],
     // "linebreak-style": ["error", "windows"],
-    "linebreak-style": ["error", "unix"],
+    // "linebreak-style": ["error", "unix"],
     // "quotes": ["error", "single"],
-    "jsx-quotes": ["error", "prefer-single"],
     "no-console": "off",
     "no-unused-vars": "off", // 사용하지 않는 변수가 있을때 빌드에러가 나던 규칙 해제
     // "@typescript-eslint/no-unused-vars": [
@@ -59,12 +72,6 @@
           "{}": false
         }
       }
-    ],
-    "no-shadow": 0,
-    "jsx-a11y/no-noninteractive-element-interactions": 0,
-    "react/jsx-filename-extension": [
-      2,
-      {"extensions": [".js", ".jsx", ".ts", ".tsx"]}
     ]
   },
   "parser": "@typescript-eslint/parser",
@@ -75,8 +82,13 @@
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx", ".js"]
     },
+    // "import/resolver": {
+    //   "typescript": "./tsconfig.json"
+    // }
     "import/resolver": {
-      "typescript": "./tsconfig.json"
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
     }
     // "mdx/code-blocks": true,
     // "mdx/language-mapper": {}

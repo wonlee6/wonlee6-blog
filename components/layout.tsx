@@ -1,15 +1,17 @@
-import React, {
-  MouseEvent,
-  ReactNode,
-  Suspense,
-  useMemo,
-  useRef,
-  useState
-} from 'react'
+import React, {MouseEvent, ReactNode, useMemo, useRef, useState} from 'react'
+import dynamic from 'next/dynamic'
 import Nav from './nav'
-import LoadingSpinner from './loadingSpinner'
-import IconButton from '@mui/material/IconButton'
-import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp'
+
+const IconButton = dynamic(() => import('@mui/material/IconButton'), {
+  ssr: false
+})
+
+const ArrowCircleUpIcon = dynamic(
+  () => import('@mui/icons-material/ArrowCircleUp'),
+  {
+    ssr: false
+  }
+)
 
 interface Props {
   children: ReactNode
@@ -25,7 +27,7 @@ export default function Layout(props: Props) {
 
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'auto'
     })
   }
 
@@ -39,7 +41,7 @@ export default function Layout(props: Props) {
       ref={scrollRef}
       className={`flex flex-col h-full dark:h-full bg-white text-gray-800 dark:bg-black dark:text-white`}>
       <Nav clientHeight={clientHeight} setIsShowIcon={setIsShowIcon} />
-      <Suspense fallback={<LoadingSpinner />}>{props.children}</Suspense>
+      {props.children}
       {isShowIcon && (
         <IconButton
           className='fixed bottom-14 right-12 w-16 h-16 text-5xl text-emerald-400 dark:hover:text-emerald-600'

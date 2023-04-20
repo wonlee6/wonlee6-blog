@@ -4,7 +4,6 @@ import Head from 'next/head'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
-// import {MDXRemote} from 'next-mdx-remote'
 import {
   PostData,
   getAllPostIds,
@@ -12,11 +11,23 @@ import {
   getSortedPostsData
 } from '@/lib/posts'
 import Date from '@/components/date'
-// import CodeBlock from '@/components/codeBlock'
-// import MenuList from '@/components/menuList'
-// import Utterance from '@/components/utterance'
 import utilStyles from '../../styles/utils.module.css'
 import LoadingSpinner from '@/components/loadingSpinner'
+
+const EditerMarkdown = dynamic(() => import('@/components/markdownView'), {
+  loading: () => <LoadingSpinner />,
+  ssr: false
+})
+
+const MenuList = dynamic(() => import('@/components/menuList'), {
+  loading: () => <LoadingSpinner />,
+  ssr: false
+})
+
+const Utterance = dynamic(() => import('@/components/utterance'), {
+  loading: () => <LoadingSpinner />,
+  ssr: false
+})
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostIds()
@@ -48,33 +59,6 @@ interface Props {
   allPostsData: PostData[]
 }
 
-// const Button = ({children}: {children: any}): JSX.Element => {
-//   return (
-//     <button
-//       className='bg-black dark:bg-white text-lg text-teal-200 dark:text-teal-700 rounded-lg px-5'
-//       onClick={() => alert(`thanks to ${children}`)}>
-//       {children}
-//     </button>
-//   )
-// }
-
-// const components = {CodeBlock}
-
-const EditerMarkdown = dynamic(() => import('@/components/markdownView'), {
-  loading: () => <LoadingSpinner />,
-  ssr: false
-})
-
-const MenuList = dynamic(() => import('@/components/menuList'), {
-  loading: () => <LoadingSpinner />,
-  ssr: false
-})
-
-const Utterance = dynamic(() => import('@/components/utterance'), {
-  loading: () => <LoadingSpinner />,
-  ssr: false
-})
-
 export default function Post({postData, allPostsData}: Props): JSX.Element {
   const router = useRouter()
 
@@ -100,7 +84,7 @@ export default function Post({postData, allPostsData}: Props): JSX.Element {
               <Date dateString={postData.date} />
             </div>
             {postData.contentHtml && (
-              <div className='prose prose-slate mx-auto prose-headings:underline dark:prose-invert dark:prose-blockquote:text-black'>
+              <div className='prose prose-slate prose-headings:underline dark:prose-invert dark:prose-blockquote:text-black'>
                 <EditerMarkdown contentHtml={postData.contentHtml} />
               </div>
             )}
@@ -121,3 +105,15 @@ export default function Post({postData, allPostsData}: Props): JSX.Element {
     </section>
   )
 }
+
+// const Button = ({children}: {children: any}): JSX.Element => {
+//   return (
+//     <button
+//       className='bg-black dark:bg-white text-lg text-teal-200 dark:text-teal-700 rounded-lg px-5'
+//       onClick={() => alert(`thanks to ${children}`)}>
+//       {children}
+//     </button>
+//   )
+// }
+
+// const components = {CodeBlock}

@@ -72,7 +72,13 @@ export default function Home({allPostsData}: {allPostsData: PostData[]}) {
                       </div>
                     </div>
                     <div className='text-base leading-6 text-emerald-400 hover:text-emerald-600 dark:hover:text-emerald-700 font-semibold'>
-                      <Link href={`/posts/${item.id}`}>Read More -{'>'}</Link>
+                      <Link
+                        href={{
+                          pathname: `/posts/${item.id}`,
+                          query: {tag: item.tag}
+                        }}>
+                        Read More -{'>'}
+                      </Link>
                     </div>
                   </div>
                 </div>

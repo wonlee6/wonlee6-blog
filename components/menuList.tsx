@@ -1,4 +1,4 @@
-import React, {useState, useMemo, memo} from 'react'
+import React, {useState, useMemo, memo, useEffect} from 'react'
 import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
@@ -16,7 +16,8 @@ interface ListModel {
 }
 
 function MenuList({postsData}: {postsData: PostData[]}) {
-  const {query} = useRouter()
+  const {query, asPath} = useRouter()
+
   const [open, setOpen] = useState<{[K: string]: boolean}>(
     postsData
       .reduce(
@@ -62,6 +63,11 @@ function MenuList({postsData}: {postsData: PostData[]}) {
       return [...acc, data]
     }, [])
   }, [postsData])
+
+  useEffect(() => {
+    const tag = asPath.split('tag=')[1]
+    setOpen((prev) => ({...prev, [tag]: true}))
+  }, [asPath])
 
   return (
     <>
