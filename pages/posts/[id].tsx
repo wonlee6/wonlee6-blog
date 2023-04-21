@@ -14,20 +14,13 @@ import Date from '@/components/date'
 import utilStyles from '../../styles/utils.module.css'
 import LoadingSpinner from '@/components/loadingSpinner'
 
-const EditerMarkdown = dynamic(() => import('@/components/markdownView'), {
-  loading: () => <LoadingSpinner />,
-  ssr: false
-})
+const EditerMarkdown = dynamic(() => import('@/components/markdownView'))
 
 const MenuList = dynamic(() => import('@/components/menuList'), {
-  loading: () => <LoadingSpinner />,
-  ssr: false
+  loading: () => <LoadingSpinner />
 })
 
-const Utterance = dynamic(() => import('@/components/utterance'), {
-  loading: () => <LoadingSpinner />,
-  ssr: false
-})
+const Utterance = dynamic(() => import('@/components/utterance'))
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostIds()

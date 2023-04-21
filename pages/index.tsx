@@ -4,13 +4,8 @@ import Link from 'next/link'
 import {PostData, getSortedPostsData} from '@/lib/posts'
 import dynamic from 'next/dynamic'
 
-const Stack = dynamic(() => import('@mui/material/Stack'), {
-  ssr: false
-})
-
-const Pagination = dynamic(() => import('@mui/material/Pagination'), {
-  ssr: false
-})
+const Stack = dynamic(() => import('@mui/material/Stack'))
+const Pagination = dynamic(() => import('@mui/material/Pagination'))
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData()

@@ -9,12 +9,12 @@ import React, {
 } from 'react'
 import EmailIcon from '@mui/icons-material/Email'
 import GitHubIcon from '@mui/icons-material/GitHub'
-import moon from '@/public/images/moon.svg'
-import sun from '@/public/images/sun.svg'
 import styles from './nav.module.css'
 import Image from 'next/image'
 import {throttle} from 'lodash'
 import Link from 'next/link'
+import moon from '@/public/images/moon.svg'
+import sun from '@/public/images/sun.svg'
 
 interface Props {
   clientHeight: number
@@ -100,6 +100,7 @@ function Nav(props: Props) {
                   height={40}
                   src={moon}
                   alt={moon}
+                  loading='lazy'
                 />
               ) : (
                 <Image
@@ -108,6 +109,7 @@ function Nav(props: Props) {
                   height={40}
                   src={sun}
                   alt={sun}
+                  loading='lazy'
                 />
               )}
             </button>
