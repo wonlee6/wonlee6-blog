@@ -3,6 +3,7 @@ import {NextPage} from 'next'
 import type {AppProps} from 'next/app'
 import ErrorBoundary from '@/components/errorBoundary'
 import Layout from '@/components/layout'
+import {Analytics} from '@vercel/analytics/react'
 import '@/styles/globals.css'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -25,6 +26,7 @@ export default function App({
       <Layout>
         <Component {...pageProps} />
       </Layout>
+      <Analytics />
     </ErrorBoundary>
   )
 }
