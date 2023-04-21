@@ -15,7 +15,6 @@ const ArrowCircleUpIcon = dynamic(
 
 interface Props {
   children: ReactNode
-  home: boolean
 }
 
 export default function Layout(props: Props) {

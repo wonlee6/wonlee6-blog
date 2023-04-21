@@ -86,7 +86,7 @@ export default function Home({allPostsData}: {allPostsData: PostData[]}) {
             </li>
           ))}
         </ul>
-        <div className='mb-28 pt-12 flex justify-center'>
+        <div className='mb-16 pt-12 flex justify-center'>
           <Stack spacing={2}>
             <Pagination
               page={currentPage}

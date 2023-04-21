@@ -22,7 +22,7 @@ export default function App({
 
   return (
     <ErrorBoundary>
-      <Layout home>
+      <Layout>
         <Component {...pageProps} />
       </Layout>
     </ErrorBoundary>
