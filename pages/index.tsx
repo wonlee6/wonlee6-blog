@@ -4,18 +4,6 @@ import Link from 'next/link'
 import {PostData, getSortedPostsData} from '@/lib/posts'
 import dynamic from 'next/dynamic'
 
-const Stack = dynamic(() => import('@mui/material/Stack'))
-const Pagination = dynamic(() => import('@mui/material/Pagination'))
-
-export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData()
-  return {
-    props: {
-      allPostsData
-    }
-  }
-}
-
 export default function Home({allPostsData}: {allPostsData: PostData[]}) {
   const postsLength = Math.ceil(allPostsData.length / 10)
   const [currentPage, setCurrentPage] = useState(1)
@@ -36,7 +24,7 @@ export default function Home({allPostsData}: {allPostsData: PostData[]}) {
   }, [allPostsData, currentPage])
 
   return (
-    <main className='h-full w-3/4 my-0 mx-auto'>
+    <main className='h-full w-3/4 xl:w-8/12 my-0 mx-auto'>
       <div className='mt-28 w-full h-full mb-auto divide-y divide-gray-200 dark:divide-gray-700'>
         <div className='space-y-2 pt-6 pb-8 md:space-y-5'>
           <h1 className='text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14'>
@@ -81,7 +69,7 @@ export default function Home({allPostsData}: {allPostsData: PostData[]}) {
             </li>
           ))}
         </ul>
-        <div className='mb-16 pt-12 flex justify-center'>
+        <div className='pt-12 flex justify-center'>
           <Stack spacing={2}>
             <Pagination
               page={currentPage}
@@ -95,4 +83,20 @@ export default function Home({allPostsData}: {allPostsData: PostData[]}) {
       </div>
     </main>
   )
+}
+
+const Stack = dynamic(() => import('@mui/material/Stack'), {
+  ssr: false
+})
+const Pagination = dynamic(() => import('@mui/material/Pagination'), {
+  ssr: false
+})
+
+export const getStaticProps: GetStaticProps = async () => {
+  const allPostsData = getSortedPostsData()
+  return {
+    props: {
+      allPostsData
+    }
+  }
 }

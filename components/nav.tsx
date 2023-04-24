@@ -1,12 +1,4 @@
-import React, {
-  Dispatch,
-  SetStateAction,
-  memo,
-  useEffect,
-  useMemo,
-  useRef,
-  useState
-} from 'react'
+import React, {memo, useEffect, useMemo, useRef, useState} from 'react'
 import EmailIcon from '@mui/icons-material/Email'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import styles from './nav.module.css'
@@ -16,12 +8,7 @@ import Link from 'next/link'
 import moon from '@/public/images/moon.svg'
 import sun from '@/public/images/sun.svg'
 
-interface Props {
-  clientHeight: number
-  setIsShowIcon: Dispatch<SetStateAction<boolean>>
-}
-
-function Nav(props: Props) {
+function Nav() {
   const [theme, setTheme] = useState<'dark' | 'light'>(() =>
     typeof window !== 'undefined'
       ? localStorage.getItem('theme') === 'dark'
@@ -63,14 +50,9 @@ function Nav(props: Props) {
         } else {
           setIsScrollDown(true)
         }
-        if (window.scrollY > props.clientHeight / 2) {
-          props.setIsShowIcon(true)
-        } else {
-          props.setIsShowIcon(false)
-        }
         beforeScrollY.current = currentScrollY
       }, 300),
-    [beforeScrollY, props]
+    [beforeScrollY]
   )
 
   useEffect(() => {
@@ -83,10 +65,10 @@ function Nav(props: Props) {
 
   return (
     <header
-      className={`w-full h-16 z-10 flex justify-center items-center bg-white bg-opacity-50 dark:bg-slate-950 dark:bg-opacity-50 dark:border-b dark:border-b-orange-200 ${
+      className={`w-full px-4 h-16 z-10 flex justify-center items-center bg-white bg-opacity-50 dark:bg-slate-950 dark:bg-opacity-50 dark:border-b dark:border-b-orange-200 ${
         isScrollDown ? styles.downdown : ''
       }`}>
-      <nav className={`w-3/4`}>
+      <nav className='w-3/4 xl:w-8/12'>
         <div className={`flex justify-between items-center`}>
           <div className='text-3xl font-semibold'>
             <Link href={`/`}>!!?!?!!??!</Link>

@@ -74,6 +74,7 @@ function MenuList({postsData}: {postsData: PostData[]}) {
       <List
         sx={{width: '100%', maxWidth: 360}}
         component='aside'
+        className='sticky top-0'
         aria-labelledby='nested-list-subheader'>
         {filteredPostsData.map((item) => (
           <React.Fragment key={item.tag}>
