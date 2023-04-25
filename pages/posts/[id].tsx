@@ -22,6 +22,7 @@ interface Props {
     tag: string
     title: string
     contentHtml: string
+    description: string
     mdxSource?: any
   }
   allPostsData: PostData[]
@@ -73,6 +74,18 @@ export default function Post({postData, allPostsData}: Props): JSX.Element {
       <article className='w-3/4 h-full pl-10 mt-20'>
         <Head>
           <title>{postData.title}</title>
+          <meta name={postData.title} content={postData.description ?? ''} />
+          <meta
+            name='viewport'
+            content='initial-scale=1.0, width=device-width'
+          />
+          <meta property='og:title' content={postData.title} />
+          <meta property='og:type' content='website' />
+          <meta
+            property='og:url'
+            content={'https://wonlee6-blog.vercel.app/'}
+          />
+          <meta property='og:article:author' content='sangwon Blog' />
         </Head>
         <div className='w-full'>
           <h1 className={utilStyles.headingXl}>{postData.title}</h1>

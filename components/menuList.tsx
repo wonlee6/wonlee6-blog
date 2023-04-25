@@ -44,24 +44,34 @@ function MenuList({postsData}: {postsData: PostData[]}) {
   }
 
   const filteredPostsData: ListModel[] = useMemo(() => {
-    return postsData.reduce((acc: ListModel[], cur: PostData) => {
-      if (acc.find((i) => i.tag === cur.tag)) {
-        return acc.map((i) => {
-          if (i.tag === cur.tag) {
-            return {
-              ...i,
-              children: [...i.children, cur]
+    return postsData
+      .reduce((acc: ListModel[], cur: PostData) => {
+        if (acc.find((i) => i.tag === cur.tag)) {
+          return acc.map((i) => {
+            if (i.tag === cur.tag) {
+              return {
+                ...i,
+                children: [...i.children, cur]
+              }
             }
-          }
-          return i
-        })
-      }
-      const data = {
-        tag: cur.tag,
-        children: [cur]
-      }
-      return [...acc, data]
-    }, [])
+            return i
+          })
+        }
+        const data = {
+          tag: cur.tag,
+          children: [cur]
+        }
+        return [...acc, data]
+      }, [])
+      .sort((a, b) => {
+        if (a.tag > b.tag) {
+          return -1
+        } else if (a.tag < b.tag) {
+          return 1
+        } else {
+          return 0
+        }
+      })
   }, [postsData])
 
   useEffect(() => {
