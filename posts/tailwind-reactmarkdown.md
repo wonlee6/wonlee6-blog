@@ -1,5 +1,5 @@
 ---
-title: 'Tailwindcss & ReactMarkDown 사용법'
+title: 'ReactMarkDown'
 date: '2023-04-25'
 tag: 'tailwind'
 description: 'ReactMarkDown 라이브러리에 Tailwindcss를 적용해보자'

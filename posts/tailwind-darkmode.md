@@ -1,5 +1,5 @@
 ---
-title: 'Tailwindcss DarkMode'
+title: 'DarkMode'
 date: '2023-04-25'
 tag: 'tailwind'
 description: '(Next)Tailwindcss를 이용하여 간단하게 DarkMode 적용해보자'
