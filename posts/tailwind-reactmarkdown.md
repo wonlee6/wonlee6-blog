@@ -135,3 +135,5 @@ function MarkdownView({contentHtml}: {contentHtml: string}): JSX.Element {
   <EditerMarkdown contentHtml={postData.contentHtml} />
 </div>
 ```
+
+[참고](https://tailwindcss.com/docs/typography-plugin)

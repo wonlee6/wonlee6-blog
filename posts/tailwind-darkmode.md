@@ -114,3 +114,5 @@ useEffect(() => {
   )}
 </button>
 ```
+
+[참고](https://tailwindcss.com/docs/dark-mode)
