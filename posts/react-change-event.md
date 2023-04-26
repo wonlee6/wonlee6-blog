@@ -1,5 +1,5 @@
 ---
-title: 'hange Event'
+title: 'Change Event'
 date: '2021-11-14'
 tag: 'React'
 description: 'React의 Change Event에 대한 정리'

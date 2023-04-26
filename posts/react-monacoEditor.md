@@ -20,6 +20,8 @@ React 환경에서 사용하기 위해 위 라이브러리 설치
 ## 2. 적용
 
 ```jsx
+import Editor from '@monaco-editor/react'
+
 export default function ChartCode(props: Props) {
   const [text, setText] = useState('')
 
@@ -53,11 +55,11 @@ export default function ChartCode(props: Props) {
 }
 ```
 
-심플하게 예재를 만들었다.
+심플하게 예제를 만들었다.
 
 옵션들을 확인해보면
 
-- minimap: vsCode 처럼 오른쪽 상단 미니맵처럼 생긴 것을 on, off
+- minimap: vsCode 오른쪽 상단 미니맵처럼 생긴 것을 on, off
 - scrollbar: 가로 세로 스크롤
 - readOnly: 수정 가능/불가능
 - lineNumbers: 코드 에디터의 라인 넘버를 보여줄지 안보여줄지

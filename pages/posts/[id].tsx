@@ -31,7 +31,7 @@ interface Props {
 export default function Post({postData, allPostsData}: Props): JSX.Element {
   const router = useRouter()
 
-  const prevPost = useMemo(() => {
+  const nextPost = useMemo(() => {
     const findIndex = _.findIndex(
       allPostsData,
       (item) => item.id === postData?.id
@@ -45,7 +45,7 @@ export default function Post({postData, allPostsData}: Props): JSX.Element {
     }
   }, [allPostsData, postData])
 
-  const nextPost = useMemo(() => {
+  const prevPost = useMemo(() => {
     const findIndex = _.findIndex(
       allPostsData,
       (item) => item.id === postData?.id
