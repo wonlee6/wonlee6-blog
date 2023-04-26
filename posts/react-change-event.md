@@ -33,7 +33,7 @@ onChange에 어떤 element다룰지 명시해야 한다.
 
 ### radio
 
-radio 또는 checkbox 경우 useCallBack으로 최적화하여 관리하는 것이 좋다.
+useCallBack으로 최적화 한다면?
 
 ```tsx
 // radio
@@ -117,7 +117,7 @@ return (
 )
 ```
 
-### number배열로 관리해도 되고 string으로 관리해도 된다.
+number배열로 관리해도 되고 string으로 관리해도 된다.
 
 ### List의 체크 관리 할때
 
@@ -190,7 +190,9 @@ const onSort = (e: 'id' | 'title') => {
   })
 }
 const sorted_table_data = useMemo(() => {
-  const return_data = [...userData].filter((_, index) => index < 10)
+  // userData에서 10개 씩만 보여 준다는 가정
+  const return_data = userData.filter((_, index) => index < 10)
+
   if (Object.values(sort).filter((v) => v !== 0)) {
     const target = sort.id ? 'id' : 'title'
     const reverse = sort[target]

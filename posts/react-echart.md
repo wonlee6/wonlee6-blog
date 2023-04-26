@@ -5,7 +5,7 @@ tag: 'React'
 description: 'ECharts 사용법에 대해 간단하게 알아보고, echart-for-react 라이브러리 사용 방법을 알아보자'
 ---
 
-## 1. EChart
+## 1. ECharts
 
 보고서에서 필수적인? 시각화 표현을 위해 차트를 많이 사용한다.
 

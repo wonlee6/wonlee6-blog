@@ -2,7 +2,7 @@
 title: 'Error Handler'
 date: '2021-10-26'
 tag: 'React'
-description: 'Error Handler를 공통으로 작업하면 어떻게 할까?'
+description: 'Error Handler를 공통 모듈로 만드는 방법'
 ---
 
 ## error module
