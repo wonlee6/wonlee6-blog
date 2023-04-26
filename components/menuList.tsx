@@ -114,7 +114,7 @@ function MenuList({postsData}: {postsData: PostData[]}) {
                             sx={{pl: 4}}>
                             <ListItemText
                               primary={value.title}
-                              className={`truncate text-emerald-400 hover:text-emerald-600 dark:hover:text-emerald-700 font-semibold`}
+                              className={`truncate text-emerald-500 hover:text-emerald-600 dark:hover:text-emerald-700 font-semibold`}
                             />
                           </ListItemButton>
                         </Link>
