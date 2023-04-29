@@ -13,7 +13,7 @@ import {
 import Date from '@/components/date'
 import utilStyles from '../../styles/utils.module.css'
 import Loading from '@/components/loading'
-import * as _ from 'lodash'
+import {findIndex} from 'lodash'
 
 interface Props {
   postData: {
@@ -23,7 +23,6 @@ interface Props {
     title: string
     contentHtml: string
     description: string
-    mdxSource?: any
   }
   allPostsData: PostData[]
 }
@@ -32,31 +31,31 @@ export default function Post({postData, allPostsData}: Props): JSX.Element {
   const router = useRouter()
 
   const nextPost = useMemo(() => {
-    const findIndex = _.findIndex(
+    const findPostIndex = findIndex(
       allPostsData,
       (item) => item.id === postData?.id
     )
-    if (findIndex <= 0) {
+    if (findPostIndex <= 0) {
       return null
     }
 
-    if (findIndex > 0) {
-      return allPostsData[findIndex - 1]
+    if (findPostIndex > 0) {
+      return allPostsData[findPostIndex - 1]
     }
   }, [allPostsData, postData])
 
   const prevPost = useMemo(() => {
-    const findIndex = _.findIndex(
+    const findPostIndex = findIndex(
       allPostsData,
       (item) => item.id === postData?.id
     )
 
-    if (findIndex === -1 || findIndex === allPostsData.length) {
+    if (findPostIndex === -1 || findPostIndex === allPostsData.length) {
       return null
     }
 
-    if (findIndex < allPostsData.length) {
-      return allPostsData[findIndex + 1]
+    if (findPostIndex < allPostsData.length) {
+      return allPostsData[findPostIndex + 1]
     }
   }, [allPostsData, postData])
 

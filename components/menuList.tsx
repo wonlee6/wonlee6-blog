@@ -1,3 +1,4 @@
+'use client'
 import React, {useState, useMemo, memo, useEffect} from 'react'
 import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
