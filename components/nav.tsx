@@ -50,6 +50,9 @@ function Nav() {
           <div className='text-3xl font-semibold'>
             <Link href={`/`}>!!?!?!!??!</Link>
           </div>
+          <div className='text-3xl font-semibold'>
+            <Link href={`/portfolio/notion`}>Notion</Link>
+          </div>
           <div className='w-36 text-4xl flex justify-between items-center'>
             <button onClick={handleClick}>
               {theme === 'light' ? (

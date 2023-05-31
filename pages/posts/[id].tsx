@@ -64,13 +64,11 @@ export default function Post({postData, allPostsData}: Props): JSX.Element {
   }
 
   return (
-    <section className='w-3/4 xl:w-8/12 h-full flex justify-center my-0 mx-auto'>
-      <aside
-        className='h-100 w-1/4 mt-20'
-        style={{borderRight: '1px solid #E7EBF0'}}>
+    <section className='mt-20 w-3/4 xl:w-8/12 h-full flex justify-center my-0 mx-auto'>
+      <aside className='h-100 w-1/4' style={{borderRight: '1px solid #E7EBF0'}}>
         <MenuList postsData={allPostsData} />
       </aside>
-      <article className='w-3/4 h-full pl-10 mt-20'>
+      <article className='w-3/4 h-full pl-10'>
         <Head>
           <title>{postData.title}</title>
           <meta name={postData.title} content={postData.description ?? ''} />
