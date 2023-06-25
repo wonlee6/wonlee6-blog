@@ -23,8 +23,6 @@ export default function Notion() {
       .then((data) => setProduct(data.items))
   }, [])
 
-  useEffect(() => console.log(product), [product])
-
   return (
     <section
       className='mt-20 w-3/4 xl:w-8/12 h-full flex justify-center my-0 mx-auto'
