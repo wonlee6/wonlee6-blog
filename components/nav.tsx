@@ -1,4 +1,6 @@
-import React, {memo, useEffect, useState} from 'react'
+'use client'
+
+import React, {memo, useEffect, useLayoutEffect, useState} from 'react'
 import EmailIcon from '@mui/icons-material/Email'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import styles from './nav.module.css'
@@ -11,13 +13,7 @@ import useScrollDown from '@/hooks/useScrollDown'
 function Nav() {
   const isScrollDown = useScrollDown()
 
-  const [theme, setTheme] = useState<'dark' | 'light'>(() =>
-    typeof window !== 'undefined'
-      ? localStorage.getItem('theme') === 'dark'
-        ? 'dark'
-        : 'light'
-      : 'light'
-  )
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark')
 
   const handleClick = () => {
     const theme = localStorage.getItem('theme')
@@ -30,13 +26,23 @@ function Nav() {
     }
   }
 
+  useLayoutEffect(() => {
+    if (localStorage.getItem('theme') === 'dark') {
+      setTheme('dark')
+      return
+    }
+    setTheme('light')
+  }, [])
+
   useEffect(() => {
     if (theme === 'dark') {
-      ;(document.querySelector('body') as HTMLBodyElement).classList.add('dark')
+      // ;(document.querySelector('body') as HTMLBodyElement).classList.add('dark')
+      document.documentElement.classList.add('dark')
     } else {
-      ;(document.querySelector('body') as HTMLBodyElement).classList.remove(
-        'dark'
-      )
+      // ;(document.querySelector('body') as HTMLBodyElement).classList.remove(
+      // 'dark'
+      // )
+      document.documentElement.classList.remove('dark')
     }
   }, [theme])
 
